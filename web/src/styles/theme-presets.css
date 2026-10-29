@@ -742,3 +742,139 @@ For commercial licensing, please contact support@quantumnous.com
     width: 100%;
   }
 }
+
+/* ── Xogpu ────────────────────────────────────────────────────────────── */
+/*
+ * 参考 xogpu.com 的暖米色纸张风。
+ *
+ * 与 `anthropic` 预设的关键区别（这是刻意的方向差异）：
+ *   - 卡片比背景**浅**（纯白浮起），不是比背景深
+ *     anthropic: canvas #faf9f5 → card #efe9de（下沉）
+ *     xogpu:     canvas #FAF7F0 → card #FFFFFF（浮起）
+ *   - 主色是青绿（#0D7A6A），不是珊瑚橙；陶土色降级为 accent 强调色
+ *   - 侧栏比背景深一档，形成明确分区
+ *
+ * 三层明度阶梯：sidebar(#F4EFE3) < background(#FAF7F0) < card(#FFFFFF)
+ */
+[data-theme-preset='xogpu'] {
+  /* Canvas + ink — 暖米纸张 + 暖近黑 */
+  --background: oklch(0.972 0.011 90); /* ≈ #FAF7F0 */
+  --foreground: oklch(0.22 0.008 60); /* ≈ #1A1614 */
+
+  /* 表面：卡片纯白浮起，popover 再亮一档 */
+  --card: oklch(1 0 0); /* #FFFFFF */
+  --card-foreground: oklch(0.22 0.008 60);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.008 60);
+
+  /* 青绿主色（xogpu 的按钮/图表/选中态） */
+  --primary: oklch(0.523 0.083 178); /* ≈ #0D7A6A */
+  --primary-foreground: oklch(0.99 0.004 95);
+
+  --secondary: oklch(0.945 0.011 88); /* ≈ #F4EFE3 */
+  --secondary-foreground: oklch(0.28 0.008 60);
+
+  --muted: oklch(0.955 0.009 89);
+  --muted-foreground: oklch(0.50 0.010 70); /* ≈ #6B635A 暖灰 */
+  --accent: oklch(0.94 0.012 88);
+  --accent-foreground: oklch(0.22 0.008 60);
+
+  --destructive: oklch(0.52 0.165 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.523 0.083 178); /* 与主色同源 */
+  --success-foreground: oklch(0.99 0.004 95);
+  --warning: oklch(0.66 0.125 72); /* 琥珀 */
+  --warning-foreground: oklch(0.22 0.008 60);
+  --info: oklch(0.55 0.085 240);
+  --info-foreground: oklch(0.99 0 0);
+  --neutral: oklch(0.56 0.010 70);
+  --neutral-foreground: oklch(0.22 0.008 60);
+
+  /* 发丝级边框：暖灰，不用主色染色 */
+  --border: oklch(0.895 0.010 88); /* ≈ #E4DED2 */
+  --input: oklch(0.895 0.010 88);
+  --ring: oklch(0.523 0.083 178);
+
+  /* 图表：青绿主 + 陶土强调 + 辅助三色 */
+  --chart-1: oklch(0.523 0.083 178); /* 青绿 #0D7A6A */
+  --chart-2: oklch(0.505 0.115 38); /* 陶土 #A94E32 */
+  --chart-3: oklch(0.615 0.085 178); /* 浅青 */
+  --chart-4: oklch(0.71 0.115 85); /* 金 */
+  --chart-5: oklch(0.66 0.020 190); /* 灰青 */
+
+  /* 侧栏比背景深一档 → 明确分区 */
+  --sidebar: oklch(0.945 0.013 88); /* ≈ #F4EFE3 */
+  --sidebar-foreground: oklch(0.28 0.008 60);
+  --sidebar-primary: oklch(0.523 0.083 178);
+  --sidebar-primary-foreground: oklch(0.99 0.004 95);
+  --sidebar-accent: oklch(0.915 0.018 86);
+  --sidebar-accent-foreground: oklch(0.22 0.008 60);
+  --sidebar-border: oklch(0.895 0.010 88);
+  --sidebar-ring: oklch(0.523 0.083 178);
+
+  --skeleton-base: oklch(0.94 0.011 88);
+  --skeleton-highlight: oklch(0.97 0.008 89);
+
+  --radius: 0.5rem;
+
+  /* 正文用无衬线（界面密度高），标题走衬线由组件单独指定 */
+  --font-body: var(--font-sans);
+}
+
+.dark [data-theme-preset='xogpu'] {
+  /* 暗色：暖近黑，不是纯黑；青绿提亮保证对比度 */
+  --background: oklch(0.185 0.005 60); /* ≈ #141416 */
+  --foreground: oklch(0.955 0.004 92);
+
+  --card: oklch(0.225 0.005 60); /* ≈ #1F1F22 */
+  --card-foreground: oklch(0.955 0.004 92);
+  --popover: oklch(0.255 0.005 60);
+  --popover-foreground: oklch(0.955 0.004 92);
+
+  --primary: oklch(0.635 0.085 178); /* 提亮的青绿 */
+  --primary-foreground: oklch(0.16 0.005 60);
+
+  --secondary: oklch(0.275 0.005 60);
+  --secondary-foreground: oklch(0.94 0.004 92);
+
+  --muted: oklch(0.255 0.005 60);
+  --muted-foreground: oklch(0.72 0.006 75);
+  --accent: oklch(0.30 0.007 60);
+  --accent-foreground: oklch(0.97 0.004 92);
+
+  --destructive: oklch(0.66 0.185 22);
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: oklch(0.70 0.105 178);
+  --success-foreground: oklch(0.16 0.005 60);
+  --warning: oklch(0.76 0.125 72);
+  --warning-foreground: oklch(0.16 0.005 60);
+  --info: oklch(0.68 0.095 240);
+  --info-foreground: oklch(0.16 0.005 60);
+  --neutral: oklch(0.70 0.008 70);
+  --neutral-foreground: oklch(0.16 0.005 60);
+
+  /* 透明白边框：任何底色上都自然融合 */
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.635 0.085 178);
+
+  --chart-1: oklch(0.635 0.085 178);
+  --chart-2: oklch(0.62 0.115 38);
+  --chart-3: oklch(0.72 0.075 178);
+  --chart-4: oklch(0.78 0.115 85);
+  --chart-5: oklch(0.72 0.020 190);
+
+  --sidebar: oklch(0.205 0.005 60); /* ≈ #1A1A1C */
+  --sidebar-foreground: oklch(0.94 0.004 92);
+  --sidebar-primary: oklch(0.635 0.085 178);
+  --sidebar-primary-foreground: oklch(0.16 0.005 60);
+  --sidebar-accent: oklch(0.275 0.007 60);
+  --sidebar-accent-foreground: oklch(0.97 0.004 92);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: oklch(0.635 0.085 178);
+
+  --skeleton-base: oklch(0.255 0.005 60);
+  --skeleton-highlight: oklch(0.32 0.006 60);
+
+  --font-body: var(--font-sans);
+}

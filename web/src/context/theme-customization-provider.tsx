@@ -127,11 +127,11 @@ export function ThemeCustomizationProvider(props: {
 
   // Mirror state to the <body> via data-* attributes so theme-presets.css can
   // override CSS variables at the right cascade layer.
+  // 始终写入 data-theme-preset（含默认值）。
+  // 原实现会在 preset === 默认值时清空属性，导致回落到 theme.css 的 :root
+  // 蓝色色板 —— 默认主题就不是我们想要的那套了。
   useEffect(() => {
-    applyAttribute(
-      'data-theme-preset',
-      preset === DEFAULT_THEME_CUSTOMIZATION.preset ? null : preset
-    )
+    applyAttribute('data-theme-preset', preset)
   }, [preset])
 
   // Resolve Auto into the preset font or the browser's sans-serif while

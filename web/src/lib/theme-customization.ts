@@ -25,6 +25,13 @@ For commercial licensing, please contact support@quantumnous.com
 
 export const THEME_PRESETS = [
   {
+    // 参考 xogpu.com：暖米色纸张底 + 纯白浮起卡片 + 青绿主色。
+    // 与 anthropic 的区别是"卡片比背景浅"，形成浮起层次。
+    value: 'xogpu',
+    name: 'Xogpu',
+    swatches: ['oklch(0.972 0.011 90)', 'oklch(0.523 0.083 178)'],
+  },
+  {
     value: 'default',
     name: 'Default',
     swatches: ['oklch(0.72 0.18 250)', 'oklch(0.7 0.12 280)'],
@@ -112,7 +119,10 @@ export type ThemeCustomization = {
 }
 
 export const DEFAULT_THEME_CUSTOMIZATION: ThemeCustomization = {
-  preset: 'default',
+  // 默认使用 xogpu 暖米色主题。注意：provider 在 preset === 默认值时不写
+  // data-theme-preset 属性，所以 :root 里的基础色板会生效 —— 必须确保
+  // theme.css 的 :root 与 xogpu 预设一致，否则默认状态会回落到蓝色。
+  preset: 'xogpu',
   font: 'default',
   radius: 'default',
   scale: 'default',
